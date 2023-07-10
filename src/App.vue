@@ -1,28 +1,28 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <!-- <TheNavbar /> -->
+  <div>
+    <!-- <router-link to="/signup"><SignupPage /></router-link>
+    <router-link to="/login"><LoginPage /></router-link> -->
+
+    
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import TheNavbar from './components/TheNavbar.vue';
+// import InfiniteScrolling from './components/InfiniteScrolling.vue';
+// import SignupPage from './credentials/SignupPage.vue';
+// import LoginPage from './credentials/LoginPage.vue';
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+  components: {
+    // TheNavbar,
+    // InfiniteScrolling
+    // SignupPage,
+    // LoginPage,
+  }
+};
+</script>
