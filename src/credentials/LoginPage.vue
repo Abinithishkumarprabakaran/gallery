@@ -77,17 +77,22 @@ import axios from 'axios';
         axios.post('http://localhost:4000/users/login', loginFormData)
           .then(response => {
             // console.log(response.data)
-            if (response.data.status === 401) {
-              alert("Please Sign up")
-            }
-            else {
+            if(response.data.token) {
               localStorage.setItem('token', response.data.token)
               this.$router.push('/profile')
             }
             // console.log("token", response.data.token)
           })
           .catch(error =>{
-            console.error(error);
+            // console.error(error);  
+            if (error.response.status === 404) {
+              console.log("Please Sign up")
+              alert("Please Sign up")
+            }
+            else if (error.response.status === 401) {
+              console.log("Invalid Credentials")
+              alert("Invalid Credentials")
+            }
           })
         // console.log(loginFormData)
       }
