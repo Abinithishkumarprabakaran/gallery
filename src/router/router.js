@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import SignupPage from '../credentials/SignupPage.vue';
 import LoginPage from '../credentials/LoginPage.vue';
 import HomeView from '../components/HomeView.vue';
+import TheProfile from '../components/TheProfile.vue';
 // import PageNotFound from '../components/PageNotFoud.vue';
 
 Vue.use(VueRouter);
@@ -25,7 +26,29 @@ const router = new VueRouter({
     //   path: '*',
     //   component: PageNotFound,
     // },
+    {
+      path: '/profile',
+      component: TheProfile,
+      meta: { requiresAuth: true }
+    },
   ],
 });
+
+router.beforeEach((to, from, next) => {
+
+  if (to.meta.requiresAuth) {
+    const isAuthenticated = localStorage.getItem('token')
+
+    if (isAuthenticated) {
+      next('');
+    }
+    else {
+      next('/login');
+    }
+  }
+  else {
+    next();
+  }
+})
 
 export default router;

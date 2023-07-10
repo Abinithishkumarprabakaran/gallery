@@ -49,6 +49,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
   export default {
     data: () => ({
       valid: false,
@@ -72,7 +74,22 @@
           password: this.password,
         }
 
-        console.log(loginFormData)
+        axios.post('http://localhost:4000/users/login', loginFormData)
+          .then(response => {
+            // console.log(response.data)
+            if (response.data.status === 401) {
+              alert("Please Sign up")
+            }
+            else {
+              localStorage.setItem('token', response.data.token)
+            }
+            // console.log("token", response.data.token)
+          })
+          .catch(error =>{
+            console.error(error);
+          })
+        // console.log(loginFormData)
+        this.$router.push('/profile')
       }
     }
   }
