@@ -9,6 +9,7 @@ import TheProfile from '../components/TheProfile.vue';
 Vue.use(VueRouter);
 
 const router = new VueRouter({
+  mode: 'history',
   routes: [
     {
       path: '/',
