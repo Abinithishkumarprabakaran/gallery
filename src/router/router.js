@@ -9,7 +9,7 @@ import TheProfile from '../components/TheProfile.vue';
 Vue.use(VueRouter);
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: 'history',   // to remove the # hash from the link
   routes: [
     {
       path: '/',
@@ -38,10 +38,10 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
 
   if (to.meta.requiresAuth) {
-    const isAuthenticated = localStorage.getItem('token')
+    const isAuthenticated = !!localStorage.getItem('token')
 
     if (isAuthenticated) {
-      next('');
+      next();
     }
     else {
       next('/login');

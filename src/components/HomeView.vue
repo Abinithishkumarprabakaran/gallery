@@ -1,5 +1,7 @@
 <template>
-  <h1>Welcome to the Gallery</h1>
+  <div>
+    <h1>Welcome to the Gallery</h1>
+  </div>
 </template>
 
 <script>

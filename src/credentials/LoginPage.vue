@@ -82,6 +82,7 @@ import axios from 'axios';
             }
             else {
               localStorage.setItem('token', response.data.token)
+              this.$router.push('/profile')
             }
             // console.log("token", response.data.token)
           })
@@ -89,7 +90,6 @@ import axios from 'axios';
             console.error(error);
           })
         // console.log(loginFormData)
-        this.$router.push('/profile')
       }
     }
   }
