@@ -16,7 +16,8 @@
     methods: {
       LogoutButton() {
         localStorage.clear();
-        this.$router.push('login')
+        // this.$router.push('login')
+        this.$router.go(-1)
       }
     }
   }

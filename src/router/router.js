@@ -26,7 +26,7 @@ const router = new VueRouter({
       component: LoginPage,
     },
     {
-      path: '/profile',
+      path: '/profile/:id',
       component: TheProfile,
       meta: { requiresAuth: true }
     },

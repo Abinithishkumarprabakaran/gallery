@@ -37,7 +37,7 @@
           <v-card-actions class="card-actions">
             <p 
               class="validation-error"
-              v-if="password !== confirmPassword && showValidationErrors"
+              v-if="showValidationErrors"
             >
               Invalid Credentials
             </p>
@@ -88,7 +88,8 @@ import axios from 'axios';
             // console.log(response.data)
             if(response.data.token) {
               localStorage.setItem('token', response.data.token)
-              this.$router.push('/profile')
+              this.$router.push(`/profile/${response.data.user._id}`)
+              // this.$router.push('/profile')
             }
             // console.log("token", response.data.token)
           })
