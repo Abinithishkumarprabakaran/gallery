@@ -35,8 +35,16 @@
             </v-row>
           </v-card-text>
           <v-card-actions class="card-actions">
+            <p 
+              class="validation-error"
+              v-if="password !== confirmPassword && showValidationErrors"
+            >
+              Invalid Credentials
+            </p>
+
             <v-btn
-              block
+              rounded
+              dark
               elevation="2"
               @click.prevent="submitLoginForm"
             >
@@ -64,9 +72,9 @@ import axios from 'axios';
       password: '',
       passwordRules: [
         v => !!v || 'Required.',
-        v => v.length >= 8 || 'Min 8 characters',
-        v => /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/.test(v) || 'Password must contain at least lowercase letter, one number, a special character and one uppercase letter',
+        v => (/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(v) && v.length >= 8) || 'Must contain a-z, A-Z, 0-9 and should be minimum 8 characters',
       ],
+      showValidationErrors: false,
     }),
     methods: {
       submitLoginForm() {
@@ -91,8 +99,8 @@ import axios from 'axios';
               alert("Please Sign up")
             }
             else if (error.response.status === 401) {
-              // console.log("Invalid Credentials")
-              alert("Invalid Credentials")
+              // alert("Invalid Credentials")
+              this.showValidationErrors = true;   
             }
           })
         // console.log(loginFormData)
@@ -115,6 +123,15 @@ import axios from 'axios';
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+
+  .validation-error {
+    color: red;
+  }
+
+  .card-actions {
+    display: flex;
+    flex-direction: column;
   }
 
 </style>

@@ -3,7 +3,7 @@
     <v-form v-model="valid">
       <v-card
         class="mx-auto my-12"
-        width=""
+        width="672"
       >
         <div class="card-container">
           <v-card-title>
@@ -51,9 +51,9 @@
               >
                 <v-text-field
                   v-model="password"
-                  :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                  
                   :rules="passwordRules"
-                  :type="show1 ? 'text' : 'password'"
+                  type='password'
                   name="input-10-1"
                   label="Password"
                   @click:append="show1 = !show1"
@@ -83,7 +83,8 @@
             </p>
             <v-card-actions class="card-actions">
               <v-btn 
-                block
+                rounded
+                dark
                 elevation="2"
                 @click.prevent="submitSignupForm"
               >
@@ -120,8 +121,7 @@ import axios from 'axios'
         confirmPassword: '',
         passwordRules: [
           v => !!v || 'Required.',
-          v => v.length >= 8 || 'Min 8 characters',
-          v => /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/.test(v) || 'Password must contain at least lowercase letter, one number, a special character and one uppercase letter',
+          v => (/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(v) && v.length >= 8) || 'Must contain a-z, A-Z, 0-9 and should be minimum 8 characters',
         ],
         // confirmPasswordRules: [
         //   v => (v.password !== v.confirmPassword) ? "Passwords Doesn't Match" : ""
