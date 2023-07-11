@@ -75,14 +75,20 @@
             </v-row>
 
           </v-card-text>
-          <v-card-actions class="card-actions">
-            <v-btn 
-              block
-              elevation="2"
-              @click.prevent="submitSignupForm"
+            <p 
+              class="validation-error"
+              v-if="password !== confirmPassword && showValidationErrors"
             >
-              Sign Up
-            </v-btn>
+              Passwords doesn't match
+            </p>
+            <v-card-actions class="card-actions">
+              <v-btn 
+                block
+                elevation="2"
+                @click.prevent="submitSignupForm"
+              >
+                Sign Up
+              </v-btn>
           </v-card-actions>
         </div>
       </v-card>
@@ -109,8 +115,6 @@ import axios from 'axios'
           v => !!v || 'E-mail is required',
           v => /.+@.+/.test(v) || 'E-mail must be valid',
         ],
-        // password: '',
-        // confirmpassword: '',
         show1: false,
         password: '',
         confirmPassword: '',
@@ -119,20 +123,25 @@ import axios from 'axios'
           v => v.length >= 8 || 'Min 8 characters',
           v => /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/.test(v) || 'Password must contain at least lowercase letter, one number, a special character and one uppercase letter',
         ],
+        // confirmPasswordRules: [
+        //   v => (v.password !== v.confirmPassword) ? "Passwords Doesn't Match" : ""
+        // ],
+        showValidationErrors: false,
       }
     },
     methods: {
 
       submitSignupForm() {
         // console.log('Form is Triggered')
-        const formData = {
-          firstname: this.firstname,
-          lastname: this.lastname,
-          email: this.email,
-          password: this.password,
-        }
 
-        axios.post('http://localhost:4000/users/signup', formData)
+        if ( this.password === this.confirmPassword ) {
+          const formData = {
+            firstname: this.firstname,
+            lastname: this.lastname,
+            email: this.email,
+            password: this.password,
+          }
+          axios.post('http://localhost:4000/users/signup', formData)
           .then(response => {
             if (response.data) {
               this.$router.push('/login')
@@ -145,6 +154,11 @@ import axios from 'axios'
               alert("Already Signed up, Do Login")
             }
           })
+        }
+        else {
+          this.showValidationErrors = true;
+          // alert("Passwords doesn't Match")
+        }
       }
     }
   }
@@ -164,6 +178,10 @@ import axios from 'axios'
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.validation-error {
+  color: red;
 }
 
 </style>
