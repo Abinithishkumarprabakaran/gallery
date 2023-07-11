@@ -122,7 +122,7 @@ import axios from 'axios'
     methods: {
 
       submitSignupForm() {
-        console.log('Form is Triggered')
+        // console.log('Form is Triggered')
         const formData = {
           firstname: this.firstname,
           lastname: this.lastname,
@@ -132,10 +132,16 @@ import axios from 'axios'
 
         axios.post('http://localhost:4000/users/signup', formData)
           .then(response => {
-            console.log(response.data)
+            if (response.data) {
+              this.$router.push('/login')
+            }
           })
-          .catch(error =>{
-            console.error(error);
+          .catch(error => {
+            // console.error(error);
+            if (error.response.status === 404) {
+              // console.log("Already Signed up, Please Log in")
+              alert("Already Signed up, Do Login")
+            }
           })
       }
     }

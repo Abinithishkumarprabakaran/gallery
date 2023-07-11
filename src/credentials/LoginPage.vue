@@ -86,11 +86,11 @@ import axios from 'axios';
           .catch(error =>{
             // console.error(error);  
             if (error.response.status === 404) {
-              console.log("Please Sign up")
+              // console.log("Please Sign up")
               alert("Please Sign up")
             }
             else if (error.response.status === 401) {
-              console.log("Invalid Credentials")
+              // console.log("Invalid Credentials")
               alert("Invalid Credentials")
             }
           })
