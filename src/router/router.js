@@ -4,6 +4,7 @@ import SignupPage from '../credentials/SignupPage.vue';
 import LoginPage from '../credentials/LoginPage.vue';
 import HomeView from '../components/HomeView.vue';
 import TheProfile from '../components/TheProfile.vue';
+import LoginCard from '../components/LoginCard.vue';
 // import PageNotFound from '../components/PageNotFoud.vue';
 
 Vue.use(VueRouter);
@@ -31,6 +32,10 @@ const router = new VueRouter({
       path: '/profile',
       component: TheProfile,
       meta: { requiresAuth: true }
+    },
+    {
+      path: '/logincard',
+      component: LoginCard,
     },
   ],
 });
