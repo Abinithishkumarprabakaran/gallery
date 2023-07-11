@@ -5,6 +5,7 @@ import LoginPage from '../credentials/LoginPage.vue';
 import HomeView from '../components/HomeView.vue';
 import TheProfile from '../components/TheProfile.vue';
 import LoginCard from '../components/LoginCard.vue';
+import SignupCard from '../components/SignupCard.vue';
 // import PageNotFound from '../components/PageNotFoud.vue';
 
 Vue.use(VueRouter);
@@ -24,10 +25,6 @@ const router = new VueRouter({
       path: '/login',
       component: LoginPage,
     },
-    // {
-    //   path: '*',
-    //   component: PageNotFound,
-    // },
     {
       path: '/profile',
       component: TheProfile,
@@ -36,6 +33,10 @@ const router = new VueRouter({
     {
       path: '/logincard',
       component: LoginCard,
+    },
+    {
+      path: '/signupcard',
+      component: SignupCard,
     },
   ],
 });
